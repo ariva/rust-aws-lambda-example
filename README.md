@@ -10,8 +10,9 @@ Optional:
 
 ## Build
 
-* **Building platform:** Mac M1
-* **Rust version**: 1.66.0
+* **Building platform:** Intel x86-64 or Mac M1
+* **Building OS:** Linux Mint 20.x or MacOS 12.5.1
+* **Rust version**: 1.65.0
 
 If you want musl build, set ENV var: `MUSL_LINKER=true`.
 
