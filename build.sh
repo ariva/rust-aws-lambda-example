@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# This script builds a docker image and copies the binary and zip to the current directory to be sued by AWS lambda.
+# This script builds a docker image and copies the binary and zip to the current directory to be used by AWS lambda.
 # It will use the docker image from the registry if it is available, otherwise it will build the image locally.
 # It also autodetects if the host is an M1 mac and sets the target to the correct architecture.
 # If you want musl build, set ENV var: MUSL_LINKER=true
