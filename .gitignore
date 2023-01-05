@@ -1,0 +1,7 @@
+/target
+bootstrap
+lambda.zip
+response.json
+*.sw*
+*.pyc
+*.tmp
