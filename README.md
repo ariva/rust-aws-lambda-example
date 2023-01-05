@@ -49,7 +49,7 @@ aws lambda invoke \
 }
 ```
 ```json
-{"greeting":"Hello Rusty Lambda World! Received param name: Testing007! And param test was set!"}
+{"greeting":"Hello Rusty Lambda World! Received param name: Testing007!"}
 ```
 
 ### Troubleshooting
