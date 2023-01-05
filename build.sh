@@ -5,7 +5,7 @@
 # It also autodetects if the host is an M1 mac and sets the target to the correct architecture.
 # If you want musl build, set ENV var: MUSL_LINKER=true
 #
-# 2023-01-05: Tested on M1 mac and x86_64 linux.
+# 2023-01-05: Tested on M1 mac and x86_64 linux - Linux Mint 20.x or MacOS 12.5.1
 
 set -e
 set -x
