@@ -23,7 +23,7 @@ then
   LINKER="RUSTFLAGS=-Clinker=musl-gcc"
   TARGET_TYPE="musl"
 else
-  LINKER=""
+  LINKER="none"
   TARGET_TYPE="gnu"
 fi
 echo "LINKER: $LINKER"
@@ -43,7 +43,7 @@ if [[ $HOST_CPU == 'x86_64' ]]; then
   TARGET="x86_64-unknown-linux-$TARGET_TYPE"
 fi
 
-# Uncomment the target you want override the target:
+# Uncomment if you want to override the target:
 # TARGET="aarch64-unknown-linux-gnu"
 # TARGET="x86_64-unknown-linux-musl"
 
