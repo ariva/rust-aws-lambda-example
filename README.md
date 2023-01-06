@@ -1,4 +1,8 @@
-# RUST AWS Lambda Example
+# Super Simple Rust AWS Lambda
+
+Super simplistic AWS rust lambda, which builds the target with the docker and allows you to test the execution locally with a simple `cargo run` ...
+
+Can be used as a started template...
 
 ## Pre-requisites
 
