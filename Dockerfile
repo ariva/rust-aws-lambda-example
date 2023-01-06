@@ -1,7 +1,5 @@
 # syntax=docker/dockerfile:experimental
 
-# TODO: add target variable and pass it to Dockerfile
-
 FROM ubuntu:18.04 as cargo-build
 ARG name
 ARG target
