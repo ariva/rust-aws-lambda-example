@@ -59,3 +59,36 @@ async fn main() -> Result<(), BoxError> {
     println!("{}", serde_json::to_string(&output)?);
     Ok(())
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[tokio::test]
+    async fn input_with_test_disabled_works() {
+        let res = process_input(Input {
+            name: "test".to_string(),
+            test: Some(false),
+        })
+        .await;
+        assert_eq!(res.is_ok(), true);
+        assert_eq!(
+            res.unwrap().greeting,
+            "Hello Rusty Lambda World! Received param name: test!"
+        );
+    }
+
+    #[tokio::test]
+    async fn input_with_test_enabled_works() {
+        let res = process_input(Input {
+            name: "test".to_string(),
+            test: Some(true),
+        })
+        .await;
+        assert_eq!(res.is_ok(), true);
+        assert_eq!(
+            res.unwrap().greeting,
+            "Hello Rusty Lambda World! Received param name: test! And param test was set!"
+        );
+    }
+}
