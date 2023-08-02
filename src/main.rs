@@ -12,7 +12,7 @@ type BoxError = Box<dyn std::error::Error + Send + Sync + 'static>;
 #[derive(Deserialize, Debug)]
 struct Input {
     name: String,
-    test: Option<bool>,
+    test_param: Option<bool>,
 }
 
 #[derive(Serialize, Debug)]
@@ -31,8 +31,8 @@ async fn process_input(input: Input) -> Result<Output, BoxError> {
         "Hello Rusty Lambda World! Received param name: {}!",
         input.name
     );
-    if input.test.is_some() && input.test.unwrap_or_default() {
-        greeting = format!("{} And param test was set!", greeting);
+    if input.test_param.is_some() {
+        greeting = format!("{} And param test was set as {}!", greeting, input.test_param.unwrap_or_default());
     }
     Ok(Output { greeting })
 }
@@ -65,12 +65,12 @@ mod tests {
     use super::*;
 
     #[tokio::test]
-    async fn input_with_test_disabled_works() {
+    async fn input_with_test_param_none() {
         let res = process_input(Input {
             name: "test".to_string(),
-            test: Some(false),
+            test_param: None,
         })
-        .await;
+            .await;
         assert_eq!(res.is_ok(), true);
         assert_eq!(
             res.unwrap().greeting,
@@ -79,16 +79,30 @@ mod tests {
     }
 
     #[tokio::test]
-    async fn input_with_test_enabled_works() {
+    async fn input_with_test_param_false() {
         let res = process_input(Input {
             name: "test".to_string(),
-            test: Some(true),
+            test_param: Some(false),
         })
         .await;
         assert_eq!(res.is_ok(), true);
         assert_eq!(
             res.unwrap().greeting,
-            "Hello Rusty Lambda World! Received param name: test! And param test was set!"
+            "Hello Rusty Lambda World! Received param name: test! And param test was set as false!"
+        );
+    }
+
+    #[tokio::test]
+    async fn input_with_test_param_true() {
+        let res = process_input(Input {
+            name: "test".to_string(),
+            test_param: Some(true),
+        })
+        .await;
+        assert_eq!(res.is_ok(), true);
+        assert_eq!(
+            res.unwrap().greeting,
+            "Hello Rusty Lambda World! Received param name: test! And param test was set as true!"
         );
     }
 }
